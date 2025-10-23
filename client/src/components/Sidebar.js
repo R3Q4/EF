@@ -14,7 +14,7 @@ const Sidebar = () => {
                 </div>
                 <ul className = 'flex flex-col space-y-2'>
                     <li >                            
-                        <Link to ='/' className='flex items-center space-x-3 px-2 py-2 rounded hover:bg-gray-700 transition'>
+                        <Link to ='/Sfind' className='flex items-center space-x-3 px-2 py-2 rounded hover:bg-gray-700 transition'>
                             <i className='material-symbols-outlined'>home</i>
                             <button>Home</button>
                         </Link>

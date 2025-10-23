@@ -1,6 +1,5 @@
 import{ fetchFromAPI } from '../utilities/api.js'
 
-const formatData = () => {}
 // Sample Data
 //DataSeries,2024,2023,2022,2021,2020,2019,2018,2017,2016,2015,2014,2013
 //Waste Disposed Of,3.33,3.31,3.2,3.12,2.84,2.99,2.97,2.98,3.05,3.02,3.04,3.03
@@ -16,7 +15,7 @@ class StatsService{
         // labels for each line
         const header = lines[0].split(',').map(s=>s.trim())
         // get year range
-        const years = Headers.slice(1)
+        const years = header.slice(1)
 
         const formattedData =[]
         for (let i =1; i<lines.length; i++){
@@ -24,15 +23,17 @@ class StatsService{
             const each = line.split(',').map(s=>s.trim())
             const label = each[0]
             const point = each.slice(1).map(Number)
-        }
-        formattedData.push({
-            label, data:point
-        })
+            formattedData.push({
+                label, data:point
+        })}
+        return{labels: years, datasets: formattedData}
+
+        
     }
     
     async retrieve(datasetID){
         const fetchedData = await fetchFromAPI(datasetID)
-        const formattedData = thie.formatData(fetchedData)
+        const formattedData = this.formatData(fetchedData)
         return formattedData
     }
 }

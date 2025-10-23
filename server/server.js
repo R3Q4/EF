@@ -2,6 +2,8 @@ import express from 'express'
 import cors from 'cors'
 
 import homepageRoutes from './routes/homepage.routes.js'
+import chatbotRoutes from './routes/chatbot.routes.js'
+import mapRoutes from './routes/map.routes.js'
 
 const app = express()
 
@@ -13,10 +15,13 @@ app.use(express.json())
 
 
 app.use('/homepage', homepageRoutes)        
+app.use('/chatbot', chatbotRoutes)
+app.use('/map', mapRoutes)
 
 // Error handling
 app.use((err, req, res, next) => {
     console.log(err)
+    console.log(`${req.method} ${req.url}`)
     const status = err.status || 500
     res.status(status).json({
         error: err.message || 'Internal Server Error'

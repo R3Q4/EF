@@ -1,3 +1,5 @@
+
+
 export const fetchFromAPI = async (dataset_ID) => {
     const url = "https://api-open.data.gov.sg/v1/public/api/datasets/" + dataset_ID + "/poll-download"
 
@@ -26,18 +28,18 @@ export const fetchFromAPI = async (dataset_ID) => {
 } 
 
 
-const dataset_ID = "d_72f8e05d45477a7af0c089ad970519da";
+{/**const dataset_ID = "d_db40d004afeb5a7f0f555fdcc34934cc";
 
-fetchFromAPI(dataset_ID)
+   fetchFromAPI(dataset_ID)
     .then(data => {
         console.log("Data fetched successfully:");
         console.log(data
 
         );
-        console.log(typeof(data)
 
-        );
+        
     })
     .catch(err => {
         console.error("Error:", err.message);
-    });
+    }); 
+     */}

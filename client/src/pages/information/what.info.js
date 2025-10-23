@@ -27,7 +27,7 @@ const What = () => {
             {/* Recyclable Materials by Materials */} 
             {data.map((item, i) => (
                 <div
-                    key = {i} className = 'relative w-[340px] h-[310px] bg-black border text-center shadow rounded-lg mb-5'
+                    key = {i} className = 'relative w-[300px] h-[310px] bg-black border text-center shadow rounded-lg mb-5'
                 >   <a href= 'https://www.nea.gov.sg/docs/default-source/our-services/waste-management/list-of-items-that-are-recyclable-and-not.pdf'  target="__blank">
                     <img
                         src = {`https://images.unsplash.com/${item.url}`}

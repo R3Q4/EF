@@ -25,33 +25,27 @@ function Signup(){
     }
 
     return (
-    <div className='min-h-screen'>
-        <Navbar />
-        <div className = 'flex vh-75 justify-center items-center mt-10'>
-            <div className='bg-gradient-to-b from-teal-500 to-cyan-400 p-10 shadow rounded-lg inline-block'>
+    <div className=''>
+            <Navbar />
+        <div className = 'min-h-screen flex flex-1 justify-center items-center'>
+            <div className='bg-gradient-to-b from-teal-500 to-cyan-400 p-10 shadow-xl border-2 border-gray-300 rounded-lg inline-block'>
                 <h1 className='text-3xl font-bold mb-2 text-white text-start'>Sign Up</h1>
-                <hr className='h-1 bg-white border-0 mb-4'></hr>
-                <div className='bg-white shadow-xl p-6'>
-                    <form onSubmit = { handleSubmit } className='space-y-2 text-base'>
-{/*                      <div>
-                            <label className='block mb-1 text-left'><strong>Username</strong></label>
-                            <input className='w-80 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500' name='username' type='text' placeholder = 'Enter Your Username' required/>
-                        </div> */}
+                <hr className='h-1 bg-white mb-4 border-0 '/>
+                <div>
 
+                    <form onSubmit = { handleSubmit } className='space-y-4 text-base bg-white p-10 shadow rounded-xl inline-block'>
                         <div>
-                            <label className='block mb-1 text-left'><strong>Email</strong></label>
-                            <input onChange={ handleChange } className='w-80 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500' name='email' type='email' placeholder = 'Enter Your Email' required/>
+                             <label className='block text-left'><strong>Email</strong></label>
+                            <input onChange = { handleChange } className='w-80 p-2 border border-gray-300 bg-gray-100 rounded focus:outline-none focus:ring-2 focus:ring-blue-500' name = 'email' type='email' placeholder = 'Enter Your Email' required/>
                         </div>
-
-
                         <div>
                             <label className='block mb-1 text-left'><strong>Password</strong></label>
-                            <input onChange={ handleChange } className='w-80 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500' name='password' type='password' placeholder = 'Enter Your Password' required/>
+                            <input onChange = { handleChange } className='w-full p-2 border border-gray-300 rounded bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500' name = 'password' type='password' placeholder = 'Enter Your Password' required/>
                         </div>
-                       
                         <p className = 'text-center'>Have an account? <Link to ='/signin'><span className='text-blue-600'>Log in</span></Link> instead</p>
                         <button className ='w-full bg-teal-600 text-white py-2 rounded hover:bg-teal-700 transition' type="submit">Sign Up</button>
                     </form>
+
                     
                 </div>
             </div>
