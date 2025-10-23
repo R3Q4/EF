@@ -9,9 +9,10 @@ import Home from './pages/information/home'
 import About from './pages/information/about'
 import Chatbot from './pages/chatbot/chatbot'
 import Enquiry from './pages/feedbackEnquiry/feedbackEnquiry'
-import Data from './pages/data'
+import Data from './pages/datasets/data'
 import Find from './pages/find'
 import SFind from './pages/Sfind'
+import Profile from './pages/profile'
 
 import TEST from './pages/datasets/map'
 
@@ -30,6 +31,8 @@ function App() {
         <Route path="/about" element={<About />}/>
         <Route path="/find" element={<Find />}/>
         <Route path="/Sfind" element={<SFind />}/>
+        <Route path="/profile" element={<Profile />}/>
+
 
       </Routes>
     </Router>

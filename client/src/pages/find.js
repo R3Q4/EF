@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from "../components/Navbar"
-import Data from './data'
+import Data from './datasets/data'
 const Find = () => {
     return (
         <div className='min-h-screen'>

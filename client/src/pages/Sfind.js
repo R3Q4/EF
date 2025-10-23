@@ -1,6 +1,6 @@
 import React from 'react'
 import Sidebar from "../components/Sidebar"
-import Data from './data'
+import Data from './datasets/data'
 const Find = () => {
     return (
         <div className='flex min-h-screen'>

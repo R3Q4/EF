@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 
- import AllLocations from './datasets/location.dataset.js'
- import Search from './datasets/search.dataset.js'
- import AMap from './datasets/map.dataset.js'
- import Choose from './datasets/choose.dataset.js'
- import APopup from './datasets/popup.dataset.js'
+ import AllLocations from './location.dataset.js'
+ import Search from './search.dataset.js'
+ import AMap from './map.dataset.js'
+ import Choose from './choose.dataset.js'
+ import APopup from './popup.dataset.js'
 
 function Map(){
   const [donationPoints,setDonationPoints] = useState([])
