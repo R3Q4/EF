@@ -13,21 +13,24 @@ import Data from './pages/datasets/data'
 import Find from './pages/find'
 import SFind from './pages/Sfind'
 import Profile from './pages/profile'
-
-import TEST from './pages/datasets/map'
+import ViewEnquiry from './pages/feedbackEnquiry/viewEnquiry'
+import TEST from './pages/test'
 
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<SFind />}/>
+        <Route path="/" element={<TEST />}/>
         <Route path="/home" element={<Home />}/>
+        <Route path="/find" element={<Find />}/>
 
         <Route path="/signup" element={<Signup />}/>
         <Route path="/signin" element={<Signin />}/>
         <Route path="/chatbot" element={<Chatbot />}/>
         <Route path="/enquiry" element={<Enquiry />}/>
+        <Route path="/viewEnquiry" element={<ViewEnquiry />}/>
+
         <Route path="/about" element={<About />}/>
         <Route path="/find" element={<Find />}/>
         <Route path="/Sfind" element={<SFind />}/>

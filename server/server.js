@@ -1,9 +1,14 @@
 import express from 'express'
 import cors from 'cors'
 
+import authRoutes from './routes/auth.routes.js'
 import homepageRoutes from './routes/homepage.routes.js'
 import chatbotRoutes from './routes/chatbot.routes.js'
 import mapRoutes from './routes/map.routes.js'
+import accountRoutes from './routes/account.routes.js'
+import settingsRoutes from './routes/setting.routes.js'
+import enquiryRoutes from './routes/enquiry.routes.js'
+
 
 const app = express()
 
@@ -17,6 +22,11 @@ app.use(express.json())
 app.use('/homepage', homepageRoutes)        
 app.use('/chatbot', chatbotRoutes)
 app.use('/map', mapRoutes)
+
+app.use('/settings', settingsRoutes)
+app.use('/account', accountRoutes)  
+app.use('/auth', authRoutes)        
+app.use('/enquiry', enquiryRoutes)  
 
 // Error handling
 app.use((err, req, res, next) => {

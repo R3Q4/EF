@@ -15,9 +15,14 @@ function Signin(){
     const handleSubmit = async(e) => {
         e.preventDefault()
         try{
-            const res = await axios.post('http://localhost:5000/auth/signin', info)
-            localStorage.setItem('user', JSON.stringify(res.data.user))
-            navigate('/welcome', {state: { message: res.data.message || 'Login Successful!'}}) 
+            const res = await axios.post('http://localhost:5000/auth/login', info)
+        const token = res.data;
+        console.log('Token after login:', token);
+
+        localStorage.setItem('token', token);
+
+
+            navigate('/Sfind', {state: { message: res.data.message || 'Login Successful!'}}) 
         }
         catch (err){
             alert('Login Failed Please try again')
