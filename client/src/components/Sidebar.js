@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-{/*import logo from '../assets/EcoFind_logo.png'*/}
+import logo from '../assets/EcoFind_logo.png'
 
 const Sidebar = () => {
   return (
@@ -8,7 +8,7 @@ const Sidebar = () => {
         <div className='flex flex-col bg-teal-800 text-white w-16 sm:w-60 p-4 min-h-screen'>
             <div>
                 <div className = 'flex align-center space-x-4 mb-12 mt-4'>
-{/*                    <img src={logo} className= 'w-10 h-10 object-contain'></img>*/}
+                    <img src={logo} className= 'w-10 h-10 object-contain'></img>
                     <h2 className= 'sm:block text-[24px] font-bold '>EcoFind</h2>
 
                 </div>

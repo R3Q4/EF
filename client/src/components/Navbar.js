@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-{/*import logo from '../assets/EcoFind_logo.png'*/}
+import logo from '../assets/EcoFind_logo.png'
 
 
 const Navbar = () =>{
@@ -8,7 +8,7 @@ const Navbar = () =>{
     return(
         <div className=' shadow-md flex justify-between items-center p-4 bg-teal-500'>
             <div className='flex space-x-4 align-center justify-center'>
-                {/*<img src={logo} className= 'w-10 h-10 object-contain'></img>*/}
+                <img src={logo} className= 'w-10 h-10 object-contain'></img>
                 <h2 className = 'text-left text-[20px] font-bold text-white text-[26px]'>EcoFind</h2>
             </div>
 
