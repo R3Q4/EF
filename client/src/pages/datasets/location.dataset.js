@@ -38,6 +38,11 @@ export default function Location({ donationPoints, openModal }) {
                             .map(add => {if (add.length === 0) return ''; return add[0].toUpperCase() + add.slice(1)})
                             .join(' ')}
                     </p>
+                    {point.distance_km &&
+                    <div>
+                        <p className='mt-1'><strong>Distance: </strong>{point.distance_km} km</p>
+                    </div>
+                    }
                 </div>
             ))}
 

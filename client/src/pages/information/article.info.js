@@ -51,7 +51,7 @@ const Article= () =>{
                 >
                     <div className = 'relative rounded-lg overflow-hidden h-64 shadow-lg'>
                         <img
-                            src='https://cassette.sphdigital.com.sg/image/straitstimes/5816bfbd3c5c3632ead7b275ddc809ce3c0baad3bffc9a53c6027d5b901738bb?w=900'
+                            src='https://www.greenplan.gov.sg/images/index/fourthimg.jpg'
                             className = 'w-full h-64 object-cover'
                         ></img>
 

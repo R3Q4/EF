@@ -17,7 +17,7 @@ function Signup(){
         try{
             const res = await axios.post('http://localhost:5000/auth/register', info)
             localStorage.setItem('user', JSON.stringify(res.data.user))
-            navigate('/Sfind', {state: { message: res.data.message || 'Signup Successful!'}}) 
+            navigate('/nearest', {state: { message: res.data.message || 'Signup Successful!'}}) 
         }
         catch (err){
             alert('Sign Up Failed Please try again')

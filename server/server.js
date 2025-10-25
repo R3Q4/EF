@@ -28,6 +28,7 @@ app.use('/account', accountRoutes)
 app.use('/auth', authRoutes)        
 app.use('/enquiry', enquiryRoutes)  
 
+
 // Error handling
 app.use((err, req, res, next) => {
     console.log(err)
@@ -39,7 +40,7 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(port, () => {
-  console.log(`Backend running at http://localhost:${port}`);
-});
+  console.log(`Backend running at http://localhost:${port}`)
+})
 
 

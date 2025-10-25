@@ -1,5 +1,3 @@
-// service/chatbot.service.js
-
 const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 const API_KEY = 'AIzaSyBhKmjcgqXI8vGwv0hVYVbR69plFjoKq7o'
 
@@ -7,7 +5,7 @@ const API_KEY = 'AIzaSyBhKmjcgqXI8vGwv0hVYVbR69plFjoKq7o'
 class ChatbotService {
   async retrieve(chatHistory) {
     try {
-              // Format messages for Gemini API
+        // Format messages for Gemini API
         const formattedMessages = chatHistory.map(({ role, text }) => ({
           role,
           parts: [{ text }],

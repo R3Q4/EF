@@ -10,18 +10,19 @@ import About from './pages/information/about'
 import Chatbot from './pages/chatbot/chatbot'
 import Enquiry from './pages/feedbackEnquiry/feedbackEnquiry'
 import Data from './pages/datasets/data'
-import Find from './pages/find'
+import Find from './pages/datasets/find'
 import SFind from './pages/Sfind'
 import Profile from './pages/profile'
 import ViewEnquiry from './pages/feedbackEnquiry/viewEnquiry'
-import TEST from './pages/test'
+import Nearest from './pages/datasets/nearest'
+import TEST from './pages/datasets/test'
 
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<TEST />}/>
+        <Route path="/" element={<Home />}/>
         <Route path="/home" element={<Home />}/>
         <Route path="/find" element={<Find />}/>
 
@@ -35,6 +36,8 @@ function App() {
         <Route path="/find" element={<Find />}/>
         <Route path="/Sfind" element={<SFind />}/>
         <Route path="/profile" element={<Profile />}/>
+        <Route path="/nearest" element={<Nearest />}/>
+
 
 
       </Routes>

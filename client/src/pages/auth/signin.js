@@ -22,7 +22,7 @@ function Signin(){
         localStorage.setItem('token', token);
 
 
-            navigate('/Sfind', {state: { message: res.data.message || 'Login Successful!'}}) 
+            navigate('/nearest', {state: { message: res.data.message || 'Login Successful!'}}) 
         }
         catch (err){
             alert('Login Failed Please try again')
