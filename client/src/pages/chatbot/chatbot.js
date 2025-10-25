@@ -48,7 +48,7 @@ const Chatbot = () => {
   return (
     <div className='flex min-h-screen'>
       <Sidebar />
-        <div className='w-full h-screen flex flex-col'>
+        <div className='w-full flex flex-col'>
           <p className='w-full bg-teal-500 text-gray-100 font-extrabold px-8 py-6 shadow-md text-[24px]'>Chatbot</p>
 
           {/* Chatbot contents */}
