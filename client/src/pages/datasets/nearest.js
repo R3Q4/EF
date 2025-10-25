@@ -63,22 +63,19 @@ const [showModal, setShowModal] = useState(false)
   
   const openModal = (point) =>{
     setSelectedPoint(point)
-    setSelectedPoint(true)
+    setShowModal(true)
   }
 
   const closeModal = () => {
     setShowModal(false)
     setSelectedPoint(null)
   }
- 
+
   return(
     <div className='min-h-screen flex'>
         <Sidebar />
         <div className='h-full w-full'>
-            <p className='w-full bg-teal-500 text-gray-100 font-extrabold px-8 py-6 shadow-md text-[24px]'>Determine Your Nearest Recycling Point</p>
-
-            <form></form>
-            
+            <p className='w-full bg-teal-500 text-gray-100 font-extrabold px-8 py-6 shadow-md text-[24px]'>Determine Your Nearest Recycling Point</p>            
 
             <div className = 'p-4'>
 
