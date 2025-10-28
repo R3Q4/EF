@@ -16,6 +16,7 @@ function Map(){
   const [selectedDataset, setSelectedDataset] = useState('d_7e1f0da76a744c85e3d3ecc76642dcb5')
   const [selectedPoint, setSelectedPoint] = useState(null)
   const [showModal, setShowModal] = useState(false)
+  const [category, setCategory] = useState('')
 
   const datasetOptions = [
     {
@@ -67,7 +68,7 @@ useEffect(() => {
   return(
     <div className='h-full w-full'>
         <div className = ''>
-          <h1 className='w-full bg-teal-500 text-gray-100 font-extrabold px-8 py-6 shadow-md text-[24px]'>3R Locations</h1>
+          <h1 className='w-full bg-teal-400 text-gray-100 font-extrabold px-8 py-6 text-[24px] shadow-lg border border-teal-500'>3R Locations</h1>
           
           {/* Dataset information - filtering and displaying and map*/}
           <div className='m-10'>

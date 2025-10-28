@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
-import Sidebar from "../components/Sidebar"
-import { Link } from 'react-router-dom';
+import React, { useState, useRef } from 'react'
+import Sidebar from "../../components/Sidebar"
+import axios from 'axios'
+import UserProfile from "./user.profile";
 
 const Profile = () =>{
     const [transfer, setTransfer] = useState('')
+    const refreshPage= useRef()
 
 
     const handleClick = (e) => {
@@ -15,6 +17,33 @@ const Profile = () =>{
         
     }
 
+    const [file, setFile] = useState()
+
+    const handleFile = (e) => {
+        setFile(e.target.files[0])
+    }
+    const handleUpload = () => {
+        const formData = new FormData()
+        formData.append('image', file)
+
+        
+        const token = localStorage.getItem('token')
+        if (!token) {alert (
+            'No Token Found. Please Login before using' )
+            return
+        }
+        try{
+        axios.post('http://localhost:5000/settings/pic',  formData , {headers: {Authorization: `Bearer ${token}`}})
+        .then(res => console.log(res))
+
+        if (refreshPage.current) {
+            refreshPage.current().fetchProfile()}
+        } catch (err){  
+            console.error(err)
+            alert('Error uploading profile picture' )
+        }
+
+    }
 
 
 
@@ -31,8 +60,14 @@ const Profile = () =>{
             <div className='flex'>
 
                     {/* Display page */}
-                    <div className='w-full'>
-                        {(transfer === 'enquiry'|| transfer === '') && 
+                    <div className='w-full flex justify-center items-center'>
+                        <div className='p-4 bg-slate-200  rounded-lg'>
+                            <UserProfile ref={refreshPage}/>
+                            <input type="file" className='w-full mt-5' onChange={ handleFile } />
+                            <button onClick={ handleUpload } className ='bg-teal-600 text-white font-bold py-2 px-4 rounded hover:bg-teal-700 transition mt-10' type="submit">Upload Profile Picture</button>
+                        
+                        </div>
+
                             <div className='p-10 '>
                                  <p className='font-bold text-3xl '>User Information</p>
 
@@ -58,14 +93,11 @@ const Profile = () =>{
 
                                 </form>
                             </div>
-                    }
+                    
                     </div>
 
-
-
-
-                {/* Account Settings */}
                 <div>
+
                     
                 </div>
 

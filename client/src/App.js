@@ -12,17 +12,18 @@ import Enquiry from './pages/feedbackEnquiry/feedbackEnquiry'
 import Data from './pages/datasets/data'
 import Find from './pages/datasets/find'
 import SFind from './pages/Sfind'
-import Profile from './pages/profile'
+import Profile from './pages/profile/profile'
 import ViewEnquiry from './pages/feedbackEnquiry/viewEnquiry'
 import Nearest from './pages/datasets/nearest'
-import TEST from './pages/datasets/test'
+import Share from './pages/share/share'
+import TEST from './pages/share/test'
 
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />}/>
+        <Route path="/" element={<Share />}/>
         <Route path="/home" element={<Home />}/>
         <Route path="/find" element={<Find />}/>
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/Sfind" element={<SFind />}/>
         <Route path="/profile" element={<Profile />}/>
         <Route path="/nearest" element={<Nearest />}/>
+        <Route path="/share" element={<Share />}/>
 
 
 

@@ -1,6 +1,39 @@
 import SettingService from '../service/setting.service.js'
 
 class SettingController {
+    async changePic(req, res, next) {
+        const user_id = req.user.id
+        const pic = req.file ? req.file.filename: null
+        await SettingService.changePic( user_id||null, pic||null )
+        res.status(201).json({message: "Profile picture uploaded successfully"})
+    }
+
+    async retrievePic(req, res, next) {
+        try {
+            const user_id = req.user.id
+            const profile = await SettingService.retrievePic(user_id)
+            res.status(200).json(profile) 
+        } catch (err) {
+            next(err)
+        }
+    
+    }
+
+    async retrieveUser(req, res, next) {
+        try {
+
+            let user_id = req.params.userId
+            if (!user_id) {
+                user_id = req.user.id
+            }
+            const profile = await SettingService.retrieveProfile(user_id)
+
+            res.status(200).json(profile)
+        } catch (err) {
+            next(err)
+        }
+    }
+
     async changeFieldsUser(req, res, next) {
         try {
             await SettingService.changeFieldsUser(req.user.id, req.body.updatedDetails)

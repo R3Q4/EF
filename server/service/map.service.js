@@ -53,7 +53,7 @@ const nearestFinderAlgo = (coord1, coord2) => {
 class MapService{
     async retrieve(dataId, filters){
         const keyword = (filters || '').toLowerCase().trim();
-        const datasetId = dataId || 'd_7e1f0da76a744c85e3d3ecc76642dcb5';
+        const datasetId = dataId || 'd_7e1f0da76a744c85e3d3ecc76642dcb5'
 
         const fetchedText = await fetchFromAPI(datasetId);
         const parsedData = JSON.parse(fetchedText);

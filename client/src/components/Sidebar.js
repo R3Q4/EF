@@ -26,14 +26,14 @@ const Sidebar = () => {
                             <button>About</button>
                         </Link>
                     </li>
-{/*
+
                     <li>                            
-                        <Link to ='/about' className='flex items-center space-x-3 px-2 py-2 rounded hover:bg-gray-700 transition'>
+                        <Link to ='/share' className='flex items-center space-x-3 px-2 py-2 rounded hover:bg-gray-700 transition'>
                             <i className='material-symbols-outlined'>share</i>
-                            <button>Find Nearest</button>
+                            <button>Share</button>
                         </Link>
                     </li>
-                    <li>
+{/*                   <li>
                         <Link to ='/ranking' className='flex items-center space-x-3 px-2 py-2 rounded hover:bg-gray-700 transition'>
                             <i className='material-symbols-outlined'>trophy</i>
                             <button>Ranking</button>

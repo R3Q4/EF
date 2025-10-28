@@ -11,6 +11,30 @@ import { send } from '../utilities/mailer.js'
 dotenv.config()
 
 class SettingService {
+    async changePic(user_id, pic){
+        await accountsDao.updatePic(user_id, pic)
+    }
+    
+    async retrievePic(user_id){
+        const result = await accountsDao.retrievePic(user_id)
+        return (result && result.length >0) ? result[0] : null
+    }
+
+    async retrieveUsername(user_id){
+        const result = await accountsDao.retrieveUsername(user_id)
+        return result
+    }
+
+    async retrieveProfile(user_id){
+        const pic = await accountsDao.retrievePic(user_id)
+        const username = await accountsDao.retrieveUsername(user_id)
+        const profile = {
+            pic: pic|| null,
+            username: username 
+        }
+        return profile
+    }
+
     async changeFields(id, updatedDetails) {
         if (updatedDetails.username) {
             await this.changeUsername(id, updatedDetails.username)

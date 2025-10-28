@@ -82,6 +82,14 @@ const [showModal, setShowModal] = useState(false)
                 <Choose selectedDataset = { datasetId } setSelectedDataset = { setDatasetId } datasetOptions = {datasetOptions}/>
                 
                 <Search inputValue = {filters} setInputValue={setFilters} onSearch ={(keyword) => fetchData(keyword, datasetId)}/>
+                  
+                <form className='mb-4 flex flex-col justify-center text-center align-center gap-3 bg-teal-100 p-4 rounded-2xl' onSubmit ={handleSearch}>
+                    <div className='flex gap-3 w-full '>
+                        <p className='font-bold'> Current Location</p><input type='text' className='w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400' value = {address} placeholder = "Enter your address" onChange = {(e) => setAddress(e.target.value)}></input>
+                        <p className='font-bold'>Number of Nearest Locations</p><input type='number' min='1' placeholder='Limit' value = {limit} onChange = {(e) => setLimit(e.target.value)} className='w-28 p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400'/>
+                    </div>
+                    <button type= 'submit' className='w-full w-auto px-6 py-2 bg-teal-500 text-white font-bold rounded-lg hover:bg-teal-600'>Find</button>
+                </form>
 
                 <div>
                     <AMap donationPoints = { donationPoints } openModal = { openModal }/>
@@ -91,13 +99,7 @@ const [showModal, setShowModal] = useState(false)
 
                 </div>
                 
-                <form className='mb-4 flex flex-col justify-center text-center align-center gap-3 bg-teal-100 p-4 rounded-2xl' onSubmit ={handleSearch}>
-                    <div className='flex gap-3 w-full '>
-                        <p className='font-bold'> Current Location</p><input type='text' className='w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400' value = {address} placeholder = "Enter your address" onChange = {(e) => setAddress(e.target.value)}></input>
-                        <p className='font-bold'>Number of Nearest Locations</p><input type='number' min='1' placeholder='Limit' value = {limit} onChange = {(e) => setLimit(e.target.value)} className='w-28 p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400'/>
-                    </div>
-                    <button type= 'submit' className='w-full w-auto px-6 py-2 bg-teal-500 text-white font-bold rounded-lg hover:bg-teal-600'>Find</button>
-                </form>
+
 
                 <AllLocations donationPoints = { donationPoints } openModal = { openModal }/>
                 <APopup showModal = { showModal } selectedPoint = { selectedPoint} closeModal = { closeModal }></APopup>

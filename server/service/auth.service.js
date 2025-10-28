@@ -66,7 +66,6 @@ class AuthService {
         // hash password
         const rounds = parseInt(process.env.BCRYPT_ROUNDS, 10) || 10
         const hashedPassword = await bcrypt.hash(password, rounds)
-
         let connection
         try {
             connection = await pool.getConnection()
@@ -78,8 +77,9 @@ class AuthService {
             await userDao.create(user_id, false, 0, 0, 0, connection)
 
             await connection.commit()
+            const token = jwt.sign({ id: user_id, role: 'user'}, process.env.JWT_SECRET, { expiresIn: "1h" })
 
-            return user_id
+            return token
         } catch (err) {
             console.log(err)
             if (connection) await connection.rollback()

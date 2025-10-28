@@ -7,6 +7,28 @@ KEY: id
 
 class AccountDao {
     // CRUD
+    async updatePic(user_id, pic, connection = null) {
+        const source = connection ?? pool
+
+        const query = `UPDATE users SET pic = ? WHERE user_id = ?`
+        const [result] = await source.execute(query, [pic, user_id])  
+        return result.insertId
+    }
+
+    async retrievePic(user_id, connection = null) {
+        const source = connection ?? pool
+
+        const query = `SELECT pic FROM users WHERE user_id = ?`
+        const [rows] = await pool.execute(query, [user_id])
+        return rows   
+    }
+
+    async retrieveUsername(user_id){
+        const query = `SELECT username FROM users WHERE user_id = ?`
+        const [row] = await pool.execute(query, [user_id])
+        return row[0]?.username
+    }
+
     async create(email, password, username, role, connection = null) {
         const source = connection ?? pool
 

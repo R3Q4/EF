@@ -14,6 +14,8 @@ export const send = async (recipient, mail_subject, mail_message) => {
     })
 
     if (error) {
+        console.log('Mail Error: ', error)
         return console.error({ error })
+        
     }
 }

@@ -8,15 +8,16 @@ import mapRoutes from './routes/map.routes.js'
 import accountRoutes from './routes/account.routes.js'
 import settingsRoutes from './routes/setting.routes.js'
 import enquiryRoutes from './routes/enquiry.routes.js'
-
+import shareRoutes from './routes/share.routes.js'
 
 const app = express()
 
-const port = 5000;
+const port = 5000
 
 
 app.use(cors())
 app.use(express.json())
+app.use('/images', express.static('images'))
 
 
 app.use('/homepage', homepageRoutes)        
@@ -27,6 +28,8 @@ app.use('/settings', settingsRoutes)
 app.use('/account', accountRoutes)  
 app.use('/auth', authRoutes)        
 app.use('/enquiry', enquiryRoutes)  
+app.use('/share', shareRoutes)  
+
 
 
 // Error handling

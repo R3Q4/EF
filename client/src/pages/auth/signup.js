@@ -16,7 +16,11 @@ function Signup(){
         e.preventDefault()
         try{
             const res = await axios.post('http://localhost:5000/auth/register', info)
-            localStorage.setItem('user', JSON.stringify(res.data.user))
+            const token = res.data;
+            console.log('Token after login:', token);
+
+            localStorage.setItem('token', token);
+
             navigate('/nearest', {state: { message: res.data.message || 'Signup Successful!'}}) 
         }
         catch (err){
