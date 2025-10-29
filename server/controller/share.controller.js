@@ -64,14 +64,21 @@ class ShareController {
         try {
             const { post_id } = req.query   
             const posts = await ShareService.retrieveComment(post_id)
-            console.log('COMMENTS FROM DB:', posts);
             res.status(200).json(posts)
         } catch (err) {
             next(err)
         }
     }
 
-
+    async deletePost(req, res, next){
+        try {
+            const { post_id } = req.query   
+            await ShareService.deletePost(post_id)
+            res.status(200).json({message: "Post deleted successfully"})
+        } catch (err) {
+            next(err)
+        }
+    }
 
 }
 

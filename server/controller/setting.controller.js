@@ -1,6 +1,36 @@
 import SettingService from '../service/setting.service.js'
 
 class SettingController {
+    async retrieveInfo(req, res, next) {
+        try {
+            const user_id = req.user.id
+            const result = await SettingService.retrieveInfo(user_id)
+            res.status(200).json(result) 
+        } catch (err) {
+            next(err)
+        }
+    }
+
+    async retrieveId(req, res, next) {
+        try {
+            const user_id = req.user.id
+            res.status(200).json({user_id}) 
+        } catch (err) {
+            next(err)
+        }
+    
+    }
+    async changeUsername (req, res, next)
+    {
+        try{
+            const user_id = req.user.id
+            const {newUsername} = req.body
+             await SettingService.changeUsername(user_id, newUsername)
+        } catch (err) {
+            next(err)
+        }
+    }
+
     async changePic(req, res, next) {
         const user_id = req.user.id
         const pic = req.file ? req.file.filename: null
@@ -33,6 +63,8 @@ class SettingController {
             next(err)
         }
     }
+    
+
 
     async changeFieldsUser(req, res, next) {
         try {

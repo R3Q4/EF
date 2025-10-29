@@ -30,21 +30,23 @@ function Like({ postId, initiallyLiked = false}){
 
     }
 
-    const bgColor = liked ? '#f87171' : '#e5e7eb'
-    const textColor = liked ? '#ffffff' : '#374151'
-    return(
-<button
-  onClick={handleToggle}
-  disabled={loading}  
-  style={{
-    backgroundColor: bgColor,
-    color: textColor,
-    transition: 'background-color 0.3s, color 0.3s, transform 0.2s',
-    transform: liked ? 'scale(1.2)' : 'scale(1)',}}
-  className={`mt-3 p-3 rounded-full material-symbols-outlined ${ loading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
-  }`}
->favorite</button>
-    )
+  return (
+      <button
+      onClick={handleToggle}
+      disabled={loading}
+      className={`
+        flex items-center justify-center 
+        w-10 h-10 rounded-full 
+        transition-all duration-300 transform mt-3
+        ${liked ? 'bg-red-400 text-white scale-110' : 'bg-gray-200 text-gray-700 scale-100'}
+        ${loading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:scale-110'}
+      `}
+    >
+      <span className="material-symbols-outlined text-[24px]">
+        favorite
+      </span>
+    </button>
+  )
 }
 export default Like
 

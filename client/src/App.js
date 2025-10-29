@@ -17,6 +17,7 @@ import ViewEnquiry from './pages/feedbackEnquiry/viewEnquiry'
 import Nearest from './pages/datasets/nearest'
 import Share from './pages/share/share'
 import TEST from './pages/share/test'
+import FAQ from './pages/feedbackEnquiry/faq'
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Route path="/profile" element={<Profile />}/>
         <Route path="/nearest" element={<Nearest />}/>
         <Route path="/share" element={<Share />}/>
+        <Route path="/faq" element={<FAQ />}/>
 
 
 

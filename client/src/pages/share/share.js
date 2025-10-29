@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Sidebar from '../../components/Sidebar'
-import Post from './post.js'
-import Create from './upload.js'
+import Post from './posts.share'
+import Create from './create.share'
+import Retrieve from './retrieve.share'
 
 function Share(){
 
@@ -68,8 +69,10 @@ function Share(){
                     </div>
 
                     <div className='flex-1 p-10'>
-                        { (transfer === 'discover'||transfer==='') && <Post post={post} token = {token} />}
-                        { transfer === 'create' && <Create post={post} />}      
+                        { (transfer === 'discover'||transfer==='') && <Retrieve post={post} token = {token} />}
+                        { transfer === 'create' && <Create post={post} />}    
+                        { transfer === 'post' && <Post post={post} token = {token} />}      
+  
                     </div>
                 </div>
 

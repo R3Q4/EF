@@ -11,6 +11,12 @@ import { send } from '../utilities/mailer.js'
 dotenv.config()
 
 class SettingService {
+    async retrieveInfo(user_id){
+        await accountsDao.retrieveInfo(user_id)
+        return result
+    }
+    
+
     async changePic(user_id, pic){
         await accountsDao.updatePic(user_id, pic)
     }
@@ -18,6 +24,10 @@ class SettingService {
     async retrievePic(user_id){
         const result = await accountsDao.retrievePic(user_id)
         return (result && result.length >0) ? result[0] : null
+    }
+    async updatedUsername(user_id, updatedUsername){
+        const result = await accountsDao.changeUsername(user_id, updatedUsername)
+        return result
     }
 
     async retrieveUsername(user_id){

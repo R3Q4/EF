@@ -37,5 +37,9 @@ class ShareService {
         return comments
         
     }
+
+    async deletePost(post_id){
+        await shareDAO.deletePost(post_id)
+    }
 }
 export default new ShareService()

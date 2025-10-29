@@ -86,8 +86,8 @@ const FeedbackEnquiry = () =>{
                 {status && <p className='mt-4 p-3 mb-3 bg-green-400 text-white font-semibold text-center'>Enquiry Sucessfully Submitted!</p>}
                         
                 {/* Contents */}
-                <div className='bg-gray-100 mt-5 '>
-                    <div>
+                <div className='bg-slate-200 mt-5 '>
+
                         <form onSubmit = {handleSubmit} className='p-10 bg-slate-200'>
 
                             <div className='mb-6'>
@@ -109,15 +109,14 @@ const FeedbackEnquiry = () =>{
                             <button className ='w-full bg-teal-500 text-white mt-10 font-bold py-2 rounded hover:bg-teal-600 transition' type="submit">Submit</button>
 
                         </form>
-                    </div>
-
-                    
-
+                        
+                        <div className='flex align-center justify-end items-center m-5'>
+                            <p className='text-gray-500'>FAQ</p>
+                            <button onClick ={() => navigate('/faq') } className='px-4 py-2 h-10 w-10 font-bold gap-4 material-symbols-outlined'>help</button>
+                        </div>
                 </div>
             </div>
-
         </div>
-
     </div>
     
     )}

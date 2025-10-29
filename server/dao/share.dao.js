@@ -46,6 +46,13 @@ class ShareDao {
         const [rows] = await pool.query(query, [post_id])
         return rows   
     }
+
+    async deletePost(post_id, connection = null){
+        const source = connection ?? pool
+        const query = `DELETE FROM shares WHERE id = ?`
+        const [result] = await source.execute(query, [post_id])  
+        return result.affectedRows > 0
+    }
 }
 
 export default new ShareDao()

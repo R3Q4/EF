@@ -23,13 +23,18 @@ const router = Router()
 // Public Routes
 router.post("/fields/user", userMiddleware, SettingController.changeFieldsUser)
 router.post("/fields", authMiddleware, SettingController.changeFields)
-router.post("/password", authMiddleware, SettingController.changePassword)
 router.delete("/", authMiddleware, SettingController.deleteAccount)
+
+router.post("/password", authMiddleware, SettingController.changePassword)
+router.post("/username", authMiddleware, SettingController.changeUsername)
+router.get("/user", authMiddleware, SettingController.retrieveInfo)
+
 
 router.post("/pic", verifyToken, upload.single('image'), SettingController.changePic)
 router.get("/retrieve", verifyToken, SettingController.retrievePic)
 router.get("/retrieveUser/:userId", verifyToken, SettingController.retrieveUser)
 
+router.get("/retrieveId", verifyToken, SettingController.retrieveId)
 
 
 export default router

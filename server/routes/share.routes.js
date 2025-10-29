@@ -28,5 +28,7 @@ router.post("/unlike", verifyToken, ShareController.unlike)
 router.post("/addComment", verifyToken, ShareController.addComment)
 router.get("/retrieveComment", verifyToken, ShareController.retrieveComment)
 
+router.delete("/delete", verifyToken, ShareController.deletePost)
+
 
 export default router
