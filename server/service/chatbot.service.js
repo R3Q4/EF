@@ -1,6 +1,8 @@
-const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
-const API_KEY = 'AIzaSyBhKmjcgqXI8vGwv0hVYVbR69plFjoKq7o'
+import dotenv from 'dotenv'
+dotenv.config()
 
+const API_URL = process.env.GOOGLE_API_URL
+const API_KEY = process.env.GOOGLE_API_KEY
 
 class ChatbotService {
   async retrieve(chatHistory) {
