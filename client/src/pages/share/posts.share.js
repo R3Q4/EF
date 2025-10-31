@@ -28,7 +28,7 @@ function Post({post, token}){
     }, [token])
 
     if (!userId){
-        return <div className = 'text-gray-500'>Loading post...</div>
+        return <div className = 'text-gray-500'>Please login to share and view posts...</div>
     }
     if (error){
         return <div className = 'text-gray-500'>Error please try again  </div>
@@ -38,11 +38,15 @@ function Post({post, token}){
 
     return (
         <div className='w-full flex flex-col'>
-            <p className='w-full font-extrabold text-[24px]'>Your Posts</p>
+
+            <div className='flex items-center space-x-3 text-teal-900 font-bold rounded'> 
+                <p className='material-symbols-outlined'>post</p> 
+                <p className='w-full font-extrabold text-[24px] text-teal-700 '>Your Posts</p>
+            </div>
             <p className='w-full text-gray-500 mt-2 text-[16px]'>Previous posts made by you</p>
             <div className='mt-3'>
                 {myPosts.length === 0 ? (
-                    <div className="text-gray-500 mt-6 ml-10">No posts found yet</div>
+                    <div className="text-gray-500 text-center mt-6 ml-10 font-bold">No posts found yet</div>
                 ) : (
                     myPosts.map((p) => (
                         <div key={p.id} className="flex flex-col p-8 border-b border-gray-300 shadow-md bg-white rounded-lg mb-4 m-10">

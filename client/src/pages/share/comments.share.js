@@ -57,7 +57,7 @@ export default function CommentSection({ postId, userId, token }) {
         <div className="space-y-4 p-4 max-h-64 overflow-y-auto">
           {comments.map((comment) => (
             <div key={comment.id} className="bg-white p-3 rounded shadow-sm">
-              <p className="text-sm mt-5"><ProfilePic userId = {userId} /></p>
+              <div className="text-sm mt-5"><ProfilePic userId = {userId} /></div>
               <p className="text-gray-700 mt-4 mb-4 ml-20">{comment.content || comment.message}</p>
               <p className="text-gray-400 text-xs ml-20">
                 {comment.commented_at

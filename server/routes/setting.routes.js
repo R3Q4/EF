@@ -33,8 +33,10 @@ router.get("/user", authMiddleware, SettingController.retrieveInfo)
 router.post("/pic", verifyToken, upload.single('image'), SettingController.changePic)
 router.get("/retrieve", verifyToken, SettingController.retrievePic)
 router.get("/retrieveUser/:userId", verifyToken, SettingController.retrieveUser)
+router.get("/retrieveUser", verifyToken, SettingController.retrieveUser)
 
 router.get("/retrieveId", verifyToken, SettingController.retrieveId)
-
+router.get("/retrieveUsername", verifyToken, SettingController.retrieveUsername)
+router.put("/updateUser", verifyToken, SettingController.updateUser)
 
 export default router

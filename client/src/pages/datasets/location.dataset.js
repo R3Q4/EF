@@ -1,6 +1,39 @@
 import react from 'react'
 
 export default function Location({ donationPoints, openModal }) {
+
+    const helperFilter = (description) => {
+        if (!description) return [];
+
+        let items = [];
+
+        // Match "E-waste accepted: ..."
+        const firstMatch = description.match(/E-waste accepted:\s*(.*)/i);
+        if (firstMatch) {
+            const ewasteItems = firstMatch[1]
+                .replace(/ only/i, '')      
+                .replace(/;.*$/i, '') 
+                .trim()
+                .split(',')
+                .map(item => item.trim())
+                .filter(Boolean);
+            items = items.concat(ewasteItems);
+        }
+
+        const secondMatch = description.match(/E\.g\.\s*(.*)/i);
+        if (secondMatch) {
+            const egItems = secondMatch[1]
+                .replace(/;.*$/i, '')  
+                .trim()
+                .split(',')
+                .map(item => item.trim())
+                .filter(Boolean);
+            items = items.concat(egItems);
+        }
+
+        return items;
+    };
+
     return(
     <div className=''>
         <div className='grid grid-cols-2 gap-8 w-full mt-3 mb-3'>
@@ -25,10 +58,9 @@ export default function Location({ donationPoints, openModal }) {
                                 <span key={idx} className='inline-block bg-gray-200 text-gray-800 text-sm px-3 py-1 rounded-full'>{item.trim()}</span>
                             )))
                             :
-                            ((point.description).split(',').slice(1).map((item, idx) => (
-                                <span key={idx} className='inline-block bg-gray-200 text-gray-800 text-sm px-3 py-1 rounded-full'>{item.trim()}</span>
-                            ))
-                            )
+                            (helperFilter(point.description).map((item, idx) => (
+                                <span key={idx} className='inline-block bg-gray-200 text-gray-800 text-sm px-3 py-1 rounded-full'>{item}</span>
+                            )))
                             }
                         </div>
 

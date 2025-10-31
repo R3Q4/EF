@@ -15,9 +15,10 @@ const Chatbot = () => {
       const res = await fetch('http://localhost:5000/chatbot', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ msg: history }),
+        body: JSON.stringify({ msg: history, maxLength: 200 }),
       });
       const data = await res.json();
+      
       setChatHistory(prev => [
         ...prev.filter(msg => msg.text !== '...'),
         { role: 'model', text: data.reply }

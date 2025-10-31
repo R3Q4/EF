@@ -1,3 +1,34 @@
+import nodemailer from 'nodemailer'
+import dotenv from 'dotenv'
+dotenv.config()
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: '15nhnccgrenee@gmail.com',
+    pass: 'nxtlegeuhyqubczk'
+  },
+})
+
+export async function send(email, url, sub, msg) {
+
+  const mailOptions = {
+    from: `"Ecofind" <${process.env.EMAIL_USER}>`,
+    to: email,
+    subject: sub,
+    html: `
+      <h2>Welcome to Ecofind!</h2>
+      <p>${msg}</p>
+      <a href="${url}">${url}</a>
+      <br><br>
+      <p>If you didn’t create an account, you can ignore this email.</p>
+    `,
+  }
+
+  await transporter.sendMail(mailOptions)
+}
+
+
 /*(import { Resend } from 'resend'
 import dotenv from 'dotenv'
 
@@ -19,10 +50,12 @@ export const send = async (recipient, mail_subject, mail_message) => {
         
     }
 }*/
+{/*
 
 import { Resend } from 'resend'
 import dotenv from 'dotenv'
 import jwt from 'jsonwebtoken'
+import nodemailer from 'nodemailer'
 
 dotenv.config()
 
@@ -54,3 +87,5 @@ export const send = async (recipient, mail_subject, mail_message) => {
         console.error('Unexpected error:', err);
     }
 };
+
+    */}

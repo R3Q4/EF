@@ -16,13 +16,21 @@ class SettingService {
         return result
     }
     
+    async updateUser(user_id, username, gender){
+        const fieldsToUpdate = {}
+        if (username) {fieldsToUpdate.username = username}
+        if (gender) {fieldsToUpdate.gender = gender}
 
+        const result = await accountsDao.updateInfo(user_id, fieldsToUpdate)
+        return this.retrieveProfile(user_id)
+    }
+    
     async changePic(user_id, pic){
         await accountsDao.updatePic(user_id, pic)
     }
     
     async retrievePic(user_id){
-        const result = await accountsDao.retrievePic(user_id)
+        const result = await accountsDao.retrievePic(user_id, true)
         return (result && result.length >0) ? result[0] : null
     }
     async updatedUsername(user_id, updatedUsername){
@@ -38,9 +46,11 @@ class SettingService {
     async retrieveProfile(user_id){
         const pic = await accountsDao.retrievePic(user_id)
         const username = await accountsDao.retrieveUsername(user_id)
+        const gender = await accountsDao.retrieveGender(user_id)
         const profile = {
             pic: pic|| null,
-            username: username 
+            username: username, 
+            gender : gender
         }
         return profile
     }

@@ -30,7 +30,7 @@ const UserProfile = () => {
 
           {profile && profile.pic ? (
             <div>
-            <img src={`http://localhost:5000/images/${profile.pic}`} className="w-14 h-14 object-cover rounded-full border-2 border-slate-200"/>
+            <img src={`http://localhost:5000/images/${profile.pic}`} className="w-20 h-20 object-cover rounded-full border-2 border-slate-200"/>
             
             </div>
             ):( 

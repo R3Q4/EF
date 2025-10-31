@@ -33,12 +33,7 @@ const Sidebar = () => {
                             <button>Share</button>
                         </Link>
                     </li>
-{/*                   <li>
-                        <Link to ='/ranking' className='flex items-center space-x-3 px-2 py-2 rounded hover:bg-gray-700 transition'>
-                            <i className='material-symbols-outlined'>trophy</i>
-                            <button>Ranking</button>
-                        </Link>    
-                    </li>*/}
+
 
                     <li >
                         <Link to ='/chatbot' className='flex items-center space-x-3 px-2 py-2 rounded hover:bg-gray-700 transition'>
@@ -62,6 +57,14 @@ const Sidebar = () => {
                         </Link>
                     </li>
                     
+
+                    <li >                        
+                        <Link to ='/faq' className='flex items-center space-x-3 px-2 py-2 rounded hover:bg-gray-700 transition'>
+                            <i className='material-symbols-outlined'>help</i>
+                            <button>FAQ</button>
+                        </Link>
+                    </li>
+
                     <li >
                         <Link to='/' className='flex items-center space-x-3 px-2 py-2 rounded hover:bg-gray-700 transition'>
                             <i className='material-symbols-outlined'>logout</i>

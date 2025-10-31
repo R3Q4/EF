@@ -44,7 +44,7 @@ function Share(){
         <div className='w-full flex flex-col bg-slate-100 '>
           <p className='w-full bg-teal-500 text-gray-100 font-extrabold px-8 py-6 shadow-md text-[24px]'>Share Your Experience</p>
             <div className='flex'>
-                    <div className = 'flex flex-col bg-gray-200  w-48  space-y-4 text-bold min-h-screen '>
+                    <div className = 'flex flex-col bg-sky-100  shadow w-48  space-y-4 text-bold min-h-screen '>
 
                         <button onClick= {() => handleClick('discover')}>
                             <div className='ml-3 flex items-center space-x-3 px-2 py-2 mr-2 text-teal-900 font-bold rounded mt-10 hover:bg-teal-300 transition'> 
@@ -75,11 +75,6 @@ function Share(){
   
                     </div>
                 </div>
-
-
-
-
-
 
         </div>
 

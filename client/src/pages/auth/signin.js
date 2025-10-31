@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 import Navbar from "../../components/Navbar"
 
 function Signin(){
     const [info, setInfo] = useState({email: '', password: ''})
+    const [error, setError] = useState('')
+
     const navigate = useNavigate()
 
     const handleChange = (e) =>{
@@ -16,16 +18,23 @@ function Signin(){
         e.preventDefault()
         try{
             const res = await axios.post('http://localhost:5000/auth/login', info)
-        const token = res.data;
-        console.log('Token after login:', token);
+            const token = res.data
+            console.log('Token after login:', token)
 
-        localStorage.setItem('token', token);
+            localStorage.setItem('token', token)
 
 
             navigate('/nearest', {state: { message: res.data.message || 'Login Successful!'}}) 
         }
         catch (err){
-            alert('Login Failed Please try again')
+
+            if (err.response && err.response.data && err.response.data.error) {
+                setError(err.response.data.error)
+            } else {
+                setError('Sign Up Failed. Please check your input and try again.')
+                alert('Sign Up Failed Please try again')
+
+            }        
         }
     }
     return (
@@ -38,6 +47,8 @@ function Signin(){
                 <div>
 
                     <form onSubmit = { handleSubmit } className='space-y-4 text-base bg-white p-10 shadow rounded-xl inline-block'>
+                        {error && <p className='break-words text-white bg-red-500 p-2 mt-3 text-center mb-3'>{error}</p>}
+
                         <div>
                              <label className='block text-left'><strong>Email</strong></label>
                             <input onChange = { handleChange } className='w-80 p-2 border border-gray-300 bg-gray-100 rounded focus:outline-none focus:ring-2 focus:ring-blue-500' name = 'email' type='email' placeholder = 'Enter Your Email' required/>
@@ -45,8 +56,9 @@ function Signin(){
                         <div>
                             <label className='block mb-1 text-left'><strong>Password</strong></label>
                             <input onChange = { handleChange } className='w-full p-2 border border-gray-300 rounded bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500' name = 'password' type='password' placeholder = 'Enter Your Password' required/>
+
                         </div>
-                        <div className='text-blue-600 text-center'>Forget Password? </div>
+                        <Link to='/forgetpass'><div className='text-blue-600 text-center mt-5'>Forget Password? </div></Link>
                         <button className ='w-full bg-teal-600 text-white font-bold py-2 hover:bg-teal-700 transition' type="submit">Login</button>
                     </form>
 

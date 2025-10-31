@@ -63,8 +63,32 @@ class SettingController {
             next(err)
         }
     }
-    
 
+    async updateUser(req,res,next){
+        try {
+
+            const user_id = req.user.id
+            const {username, gender } = req.body
+            if (!username && !gender){return  res.status(400).json({error: 'Nothing to update'})}
+
+            const profile = await SettingService.updateUser(user_id, username, gender)
+
+            res.status(200).json(profile)
+        } catch (err) {
+            next(err)
+        }
+    }
+    
+    async retrieveUsername(req, res, next){
+        try {
+            const user_id = req.user.id
+            const profile = await SettingService.retrieveProfile(user_id)
+            const {username} = profile
+            res.status(200).json({username})
+        } catch (err) {
+            next(err)
+        }
+    }
 
     async changeFieldsUser(req, res, next) {
         try {

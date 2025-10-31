@@ -8,7 +8,12 @@ import Comments from './comments.share'
 function Retrieve({post, token}){
     return(
         <div>
-            <p className="w-full font-extrabold text-[24px]">Discover</p>
+            
+            <div className='flex items-center space-x-3 text-teal-900 font-bold rounded'> 
+                <p className='material-symbols-outlined'>visibility</p> 
+                <p className="w-full font-extrabold text-[24px] text-teal-800">Discover</p>
+            </div>
+
             <p className="w-full text-gray-500 mt-2 text-[16px]">
               Hear and learn from others in the community
             </p>

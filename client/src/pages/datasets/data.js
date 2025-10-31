@@ -7,6 +7,7 @@ import axios from 'axios'
  import AMap from './map.dataset.js'
  import Choose from './choose.dataset.js'
  import APopup from './popup.dataset.js'
+ import Category from './userFilter.dataset'
 
 function Map(){
   const [donationPoints,setDonationPoints] = useState([])
@@ -16,17 +17,22 @@ function Map(){
   const [selectedDataset, setSelectedDataset] = useState('d_7e1f0da76a744c85e3d3ecc76642dcb5')
   const [selectedPoint, setSelectedPoint] = useState(null)
   const [showModal, setShowModal] = useState(false)
-  const [category, setCategory] = useState('')
+  const [category, setCategory] = useState('all')
 
   const datasetOptions = [
     {
       id: 'd_7e1f0da76a744c85e3d3ecc76642dcb5',
-      label: 'Donation/Repair/Resale Locations'
+      label: 'Donation/Repair/Resale Locations',
+      category: [`Appliances`, `Baby`,`Bags`, `Books`, `children`, `Clothing`, `Furniture`, `Household`,`ICT`,
+      `Shoes`,
+      `Stationery`,
+      `Toys`]
     },
     
     {
       id: 'd_db40d004afeb5a7f0f555fdcc34934cc',
-      label: 'Recycling Points'
+      label: 'Recycling Points',
+      category: ['Appliances', 'Audio', 'Batteries', 'Devices', 'gaming ',  'ICT', 'Lamps','Power']
     }
   ]
 
@@ -36,7 +42,16 @@ function Map(){
 
     try{
       const params = new URLSearchParams()
-      if (filters) params.append('filters', filters)
+      let combinedFilters = filters
+
+    // combine search term + category
+    if (category && category !== 'all') {
+      combinedFilters = combinedFilters
+        ? `${combinedFilters} ${category}` 
+        : category
+    }
+
+      if (filters) params.append('filters', combinedFilters)
       if (datasetId) params.append('datasetId', datasetId)
 
       const response = await axios.get(`http://localhost:5000/map?${params.toString()}`)
@@ -51,7 +66,7 @@ function Map(){
   //
 useEffect(() => {
     fetchData('', selectedDataset);
-  }, [selectedDataset]);
+  }, [selectedDataset, category]);
 
   const defaultPosition = [1.3521, 103.8198];
 
@@ -65,6 +80,9 @@ useEffect(() => {
     setSelectedPoint(null);
   }
 
+  const currentCategories =
+    datasetOptions.find(d => d.id === selectedDataset)?.category || []
+
   return(
     <div className='h-full w-full'>
         <div className = ''>
@@ -73,6 +91,7 @@ useEffect(() => {
           {/* Dataset information - filtering and displaying and map*/}
           <div className='m-10'>
             <Choose selectedDataset = { selectedDataset } setSelectedDataset = { setSelectedDataset } datasetOptions = {datasetOptions}/>
+            <Category currentCategories = {currentCategories} category = {category} setCategory = {setCategory}/>
             <Search inputValue = {inputValue} setInputValue={setInputValue} onSearch ={(keyword) => fetchData(keyword, selectedDataset)}/>
 
             <div>

@@ -16,20 +16,25 @@ import Profile from './pages/profile/profile'
 import ViewEnquiry from './pages/feedbackEnquiry/viewEnquiry'
 import Nearest from './pages/datasets/nearest'
 import Share from './pages/share/share'
-import TEST from './pages/share/test'
 import FAQ from './pages/feedbackEnquiry/faq'
-
+import Redirect from './pages/auth/redirect'
+import Forget from './pages/auth/forgetpass'
+import Reset from './pages/auth/reset'
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Share />}/>
+        <Route path="/" element={<Signup />}/>
         <Route path="/home" element={<Home />}/>
         <Route path="/find" element={<Find />}/>
 
         <Route path="/signup" element={<Signup />}/>
         <Route path="/signin" element={<Signin />}/>
+        <Route path="/redirect" element={<Redirect />}/>
+        <Route path="/forgetpass" element={<Forget />}/>
+
+
         <Route path="/chatbot" element={<Chatbot />}/>
         <Route path="/enquiry" element={<Enquiry />}/>
         <Route path="/viewEnquiry" element={<ViewEnquiry />}/>
@@ -41,6 +46,7 @@ function App() {
         <Route path="/nearest" element={<Nearest />}/>
         <Route path="/share" element={<Share />}/>
         <Route path="/faq" element={<FAQ />}/>
+        <Route path="/reset" element={<Reset />}/>
 
 
 

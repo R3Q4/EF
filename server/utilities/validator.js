@@ -2,7 +2,7 @@ import validator from 'validator'
 
 export const verifyPassword = (password) => {
     const passwordOptions = {
-        minLength: 12,
+        minLength: 8,
         minLowercase: 1, 
         minUppercase: 1,
         minNumbers: 1,
@@ -13,5 +13,6 @@ export const verifyPassword = (password) => {
 }
 
 export const verifyEmail = (email) => {
+
     return validator.isEmail(email)
 }

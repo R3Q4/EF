@@ -8,6 +8,8 @@ const router = Router()
 
 router.post("/upload", verifyToken, EnquiryController.upload)
 router.get("/retrieve", verifyToken, EnquiryController.retrieve)
+router.get("/faq", verifyToken, EnquiryController.retrieveFAQ)
+
 
 
 export default router

@@ -62,7 +62,7 @@ class MapService{
 
         if (keyword) {
         formattedData = formattedData.filter(point => {
-            const searchable = `${point.name} ${point.description} ${point.address}`.toLowerCase();
+            const searchable = `${point.name} ${point.description} ${point.address}  ${point.items}`.toLowerCase();
             return searchable.includes(keyword);
         });
         }
