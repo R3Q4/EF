@@ -20,6 +20,7 @@ import FAQ from './pages/feedbackEnquiry/faq'
 import Redirect from './pages/auth/redirect'
 import Forget from './pages/auth/forgetpass'
 import Reset from './pages/auth/reset'
+import DeleteAccount from './pages/auth/deleteaccount'
 
 function App() {
   return (
@@ -47,6 +48,8 @@ function App() {
         <Route path="/share" element={<Share />}/>
         <Route path="/faq" element={<FAQ />}/>
         <Route path="/reset" element={<Reset />}/>
+
+        <Route path="/deleteAccount" element={<DeleteAccount />} />
 
 
 

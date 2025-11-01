@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
+import jwt from 'jsonwebtoken'
 
 import pool from '../config/database.js'
 import accountsDao from '../dao/accounts.dao.js'
@@ -135,34 +136,34 @@ class SettingService {
         await usersDao.update(id, 'privacy', privacyBool)
     }
 
-    async deleteAccount(id, role, token) {
-        let accountDeleteSuccessful = false
-
-        let connection
+    async deleteAccount(user_id, token) {
         try {
-            connection = await pool.getConnection()
-
-            await connection.beginTransaction()
-
-            if (role == "user") {
-                await usersDao.delete(id, connection)
-            } 
-
-            // Delete account
-            await accountsDao.delete(id, connection)
-
-            await connection.commit()
-
-            accountDeleteSuccessful = true
-        } catch (err) {
-            if (connection) await connection.rollback()
-            throw new Error("Failed to delete account")
-        } finally {
-            if (connection) connection.release()
-        }
-
+            const email = await accountsDao.retrieveEmail(user_id)
+            const link = `http://localhost:5000/settings/deleteAccount?token=${token}`
+            const Email_Sub = 'Automatic Email for Deleting Account'
+            const Email_Msg = `Click on the following link to delete your account`
         
-        if (accountDeleteSuccessful) blacklistToken(token) // Blacklist token        
+            // Delete account email
+            await send(email, link, Email_Sub, Email_Msg)
+            return true
+        } catch (err) {
+            return false
+        } 
+        
+    }
+
+    async confirmDelete(token) {
+        try{
+            console.log("SS")
+            const decoded = jwt.verify(token, process.env.JWT_SECRET)
+            const userId = decoded.id
+            console.log(userId)
+            await accountsDao.delete(userId)
+            await accountsDao.confirmDelete(userId) 
+            return true   
+        }
+        catch (err) { return false}
+
     }
 }
 

@@ -39,4 +39,8 @@ router.get("/retrieveId", verifyToken, SettingController.retrieveId)
 router.get("/retrieveUsername", verifyToken, SettingController.retrieveUsername)
 router.put("/updateUser", verifyToken, SettingController.updateUser)
 
+router.delete("/delete", verifyToken, SettingController.deleteAccount)
+router.get("/deleteAccount", SettingController.confirmDelete)
+
+
 export default router

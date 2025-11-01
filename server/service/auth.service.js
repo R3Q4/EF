@@ -22,7 +22,12 @@ class AuthService {
 
         // Verify User
         const user = await accountDao.retrieveByEmail(email)
-        if (!user || !(await bcrypt.compare(password, user.password))) {
+        if (!user){ 
+            const error = new Error("User does not exist")
+            error.status = 401
+            throw error 
+        }
+        if (!(await bcrypt.compare(password, user.password))) {
             const error = new Error("Wrong Password")
             error.status = 401
             throw error

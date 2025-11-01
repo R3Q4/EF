@@ -150,15 +150,19 @@ class AccountDao {
         };
     }
 
-
-    
-    async delete(id, connection = null) {
-        const source = connection ?? pool
-
+    async delete(id) {
         const query = `DELETE FROM accounts where id = ?`
-        const [result] = await source.execute(query, [id])
+        const [result] = await pool.execute(query, [id])
         return result.affectedRows > 0
     }
+    
+    async confirmDelete(user_id) {
+        const query = `DELETE FROM users where user_id = ?`
+        const [result] = await pool.execute(query, [user_id])
+        return result.affectedRows > 0
+    }
+
+
 }
 
 export default new AccountDao()

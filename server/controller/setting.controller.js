@@ -119,12 +119,32 @@ class SettingController {
 
     async deleteAccount(req, res, next) {
         try {
-            await SettingService.deleteAccount(req.user.id, req.user.role, req.token)
-            res.status(201).json({message: "Account deleted successfully"})
+            const token = req.headers.authorization?.split(' ')[1]
+            const user_id = req.user.id
+            const result = await SettingService.deleteAccount(user_id, token)
+            if (result) {  res.status(200).json({ success: true, message: "Account deletion email successful" })
+            }
+            else{res.status(400).json({ success: false, message: "Invalid token or user not found" })
+            }
+
         } catch (err) {
-            next(err)
+            res.status(400).json({ success: false, message: "Account deletion failed" })
         }
     }
-}
+
+    async confirmDelete(req,res){
+        try{
+        const {token} = req.query
+        await SettingService.confirmDelete(token)
+
+        res.redirect(`http://localhost:3000/deleteAccount?status=success&token=${token}`)}
+
+
+    catch (err){
+            res.redirect(`http://localhost:3000/deleteAccount?status=fail`)
+
+        }
+
+}}
 
 export default new SettingController()
