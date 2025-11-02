@@ -6,9 +6,8 @@ const formatData = (rawData) => {
   return rawData.features.map(feature => {
     const { geometry, properties } = feature;
 
-    // Normalize address for datasets with complex structure
     const fullAddress =
-      properties.FULLADDRESS || // Dataset A
+      properties.FULLADDRESS || // REPAIR DONATE RESALE
       properties.ADDRESSSTREETNAME || // EWASTE
       [
         properties.ADDRESSBLOCKHOUSENUMBER,
@@ -60,20 +59,29 @@ class MapService{
 
         let formattedData = formatData(parsedData);
 
-        if (keyword) {
-        formattedData = formattedData.filter(point => {
-            const searchable = `${point.name} ${point.description} ${point.address}  ${point.items}`.toLowerCase();
-            return searchable.includes(keyword);
-        });
-        }
+if (keyword) {
+    const keywords = keyword.split(/\s+/).filter(Boolean); // split by spaces
+    formattedData = formattedData.filter(point => {
+      const searchable = [
+        point.name,
+        point.description,
+        point.address,
+        point.items
+      ]
+        .join(' ')
+        .toLowerCase();
 
-        return formattedData
-    }
+      // Match if ANY of the keywords exist in searchable text
+      return keywords.some(k => searchable.includes(k));
+    });
+  }
+
+  return formattedData;
+}
 
   async nearest(datasetId, address, filters, limit) {
     if (!address) return this.retrieve(datasetId, filters);
 
-    // Use OpenStreetMap Nominatim instead of OneMap
     const addrFinder = await fetch(
       `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
         address
@@ -114,58 +122,3 @@ export default new MapService()
 
 
 
-
-
-{/*import{ fetchFromAPI } from '../utilities/api.js'
-
-
-class MapService {
-    formatData(data){
-        if (!data.features) return []
-
-        return data.features.map(feature =>{
-            const { geometry, properties } = feature
-
-            const fullAddress = 
-            properties.FULLADDRESS || properties.ADDRESSSTREETNAME || 
-            [
-                properties.ADDRESSBLOCKHOUSENUMBER,
-                properties.ADDRESSSTREETNAME,
-                properties.ADDRESSBUILDINGNAME,
-                properties.ADDRESSFLOORNUMBER,
-                properties.ADDRESSUNITNUMBER,
-                properties.ADDRESSPOSTALCODE
-            ]
-            .filter(Boolean)
-            .join(',')
-
-            return{
-                name: properties.NAME || '',
-                description: properties.DESCRIPTION || '',
-                address: fullAddress,
-                location: geometry
-            }
-
-        })
-    }
-
-    async retrieve(id, filters){
-        const keyword = (filters || '').toLowerCase().trim()
-        const datasetID = id || 'd_7e1f0da76a744c85e3d3ecc76642dcb5'
-
-        const fetchedData = await fetchFromAPI(datasetID)
-        const jsonData = JSON.parse(fetchedData)
-        let formattedData = this.formatData(jsonData)
-
-        if (keyword){
-            formattedData = formattedData.filter(i => {
-                const searchItem = `${i.name} ${i.description} ${i.address}`.toLowerCase()
-                return searchItem.includes(keyword)
-            })
-        }
-        return formattedData
-    }
-
-
-}
-export default new MapService() */}

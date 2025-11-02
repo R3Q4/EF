@@ -51,7 +51,7 @@ function Map(){
         : category
     }
 
-      if (filters) params.append('filters', combinedFilters)
+      if (combinedFilters) params.append('filters', combinedFilters)
       if (datasetId) params.append('datasetId', datasetId)
 
       const response = await axios.get(`http://localhost:5000/map?${params.toString()}`)

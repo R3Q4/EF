@@ -33,6 +33,13 @@ class ShareDao {
         const [result] = await source.execute(query, [user_id, post_id])  
         return result.affectedRows > 0
     }
+
+    async likeCount(post_id){
+        const query = `SELECT COUNT(*) AS count FROM likes WHERE post_id = ?`
+        const [result] = await pool.execute(query, [post_id])
+        return Number(result[0].count)
+    }
+
     async addComment (user_id, post_id, message, connection = null){
         const source = connection ?? pool
         const query = `INSERT INTO comments (user_id, post_id, message) VALUES (?, ?, ?)`

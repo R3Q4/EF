@@ -49,6 +49,17 @@ class ShareController {
         }
     }
 
+    async likeCount(req,res,next){
+        try {
+            const { post_id } = req.query   
+            const count = await ShareService.likeCount(post_id)
+            res.status(200).json({count})
+        } catch (err) {
+            next(err)
+        }
+    }
+
+
     async addComment(req, res, next){
         try {
             const user_id = req.user.id

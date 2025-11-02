@@ -8,20 +8,18 @@ export default function Redirect() {
     const location = useLocation()
     const navigate = useNavigate()
 
-    // Parse query parameters from URL
     useEffect(() => {
         const params = new URLSearchParams(location.search)
-        const statusParam = params.get('status') // "success" or "fail"
+        const statusParam = params.get('status') 
         const messageParam = params.get('message') || ''
         
-        setStatus(statusParam === 'success') // convert to boolean
+        setStatus(statusParam === 'success') 
         setMessage(messageParam)
 
         if (statusParam === 'success') {
             localStorage.removeItem('token') // remove JWT after deletion
         }
 
-        // Optional: redirect automatically after 5 seconds
         if (statusParam === 'success') {
             const timer = setTimeout(() => {
                 navigate('/home')

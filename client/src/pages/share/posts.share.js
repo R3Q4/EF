@@ -55,11 +55,16 @@ function Post({post, token}){
                             </div>
                             <p className="mt-3 text-gray-400 text-sm">Posted on: {p.shared_at.slice(0, 10)}</p>
                             <h2 className="text-lg font-bold mt-3 mb-3">{p.title}</h2>
-                            <img src={`http://localhost:5000/${p.img}`} alt={p.title} className="w-full h-auto rounded-md mb-4" />
-                                <Like postId={p.id} initiallyLiked = {false} />
-                                <Comments postId={p.id} token={token} />
-                                <DeleteButton postId={p.id} token={token} />
+
+                            {post.img && (
                                 
+                                    <img src={`http://localhost:5000/${p.img}`} alt={p.title} className="w-full h-auto rounded-md mb-4" />)} 
+                                    <Like postId={p.id} initiallyLiked = {false} />
+                                    <Comments postId={p.id} token={token} />
+                                    <DeleteButton postId={p.id} token={token} />
+                                            
+
+                             
                         </div>
                     ))
                 )}
