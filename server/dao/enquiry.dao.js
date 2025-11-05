@@ -9,7 +9,8 @@ class EnquiryDAO {
 
     async retrieve(user_id){
         const query = `SELECT * FROM enquiries WHERE user_id = ? ORDER BY created_at DESC` 
-        const [rows] = await pool.query(query, [user_id])
+        const [rows] = await pool.execute(query, [user_id]) //        const [rows] = await pool.query(query, [user_id])
+
         return rows
     }
 

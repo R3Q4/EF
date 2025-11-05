@@ -11,7 +11,7 @@ class UserDAO {
     async create(id, privacy, donated, repaired, resold, connection = null) {
         const source = connection ?? pool
 
-        const query = `INSERT INTO users (id, privacy, donated, repaired, resold) VALUES (?, ?, ?, ?, ?)`
+        const query = `INSERT INTO users (user_id, privacy, donated, repaired, resold) VALUES (?, ?, ?, ?, ?)`
         const [result] = await source.execute(query, [id, privacy, donated, repaired, resold])  
         return result.insertId
     }
