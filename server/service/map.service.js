@@ -33,8 +33,9 @@ const formatData = (rawData) => {
     };
   });
 };
+
 const nearestFinderAlgo = (coord1, coord2) => {
-  const toRad = x => (x * Math.PI) / 180;
+const toRad = x => (x * Math.PI) / 180;
   const [lat1, lon1] = coord1;
   const [lat2, lon2] = coord2;
 
@@ -59,21 +60,21 @@ class MapService{
 
         let formattedData = formatData(parsedData);
 
-if (keyword) {
-    const keywords = keyword.split(/\s+/).filter(Boolean); // split by spaces
-    formattedData = formattedData.filter(point => {
-      const searchable = [
-        point.name,
-        point.description,
-        point.address,
-        point.items
-      ]
-        .join(' ')
-        .toLowerCase();
+        if (keyword) {
+            const keywords = keyword.split(/\s+/).filter(Boolean); // split by spaces
+            formattedData = formattedData.filter(point => {
+              const searchable = [
+                point.name,
+                point.description,
+                point.address,
+                point.items
+              ]
+                .join(' ')
+                .toLowerCase();
 
-      // Match if ANY of the keywords exist in searchable text
-      return keywords.some(k => searchable.includes(k));
-    });
+              // Match if ANY of the keywords exist in searchable text
+              return keywords.some(k => searchable.includes(k));
+            });
   }
 
   return formattedData;
@@ -113,7 +114,7 @@ if (keyword) {
 
     const sorted = results.sort((a, b) => a.distance_km - b.distance_km);
     const limits = Math.max(1, parseInt(limit) || 3);
-
+    
     return sorted.slice(0, limits);
     }
 }
