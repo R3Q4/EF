@@ -23,12 +23,13 @@ class AuthService {
         // Verify User
         const user = await accountDao.retrieveByEmail(email)
         if (!user){ 
-            const error = new Error("User does not exist")
+            const error = new Error("Email not found")
             error.status = 401
             throw error 
         }
+        
         if (!(await bcrypt.compare(password, user.password))) {
-            const error = new Error("Wrong Password")
+            const error = new Error("Incorrect Password")
             error.status = 401
             throw error
         }
@@ -46,10 +47,11 @@ class AuthService {
         if (!validEmail) {
             const error = new Error("Invalid Email")
             error.status = 400
-            throw error}
+            throw error
+        }
 
         if (!validPassword) {
-            const error = new Error("Error! Password must be at least 8 characters and include a mix of letters, numbers and symbols")
+            const error = new Error("Error! Passwords must be at least 8 characters and include a mix of letters, numbers, symbols and upper lower cases.")
             error.status = 400
             throw error
         }
@@ -57,7 +59,7 @@ class AuthService {
         // Check for existing users
         const existing = await accountDao.retrieveByEmail(email)
         if (existing) {
-            const error = new Error("Error! User already exists")
+            const error = new Error("Email Taken")
             error.status = 409
             throw error
         }
@@ -95,7 +97,7 @@ class AuthService {
 
             await send(email, url, sub, msg)
 
-            return {message: 'Registration successful. Please check you email to verify your account before logging in.'}
+            return {message: 'Registration successful. Please check your email to verify your account before logging in.'}
         } catch (err) {
             console.log(err)
             if (connection) await connection.rollback()
@@ -139,11 +141,11 @@ class AuthService {
     async forget( email ) {
         // Check for valid email
         const validEmail = verifyEmail(email)
-        
+        if (!validEmail) throw new Error('Invalid Email')
 
         // Check for registerd email
         const existing = await accountDao.retrieveByEmail(email)
-        if (!existing) throw new Error("Unregistered email")
+        if (!existing) throw new Error("Email not found. Please create an account instead.")
 
         // Create a reset token
         const { id } = existing
@@ -156,7 +158,7 @@ class AuthService {
         
         try {
             await send(email, link, Email_Sub, Email_Msg)
-            return true
+            return {message: "Email Sent"}
         } catch (err) {
             throw new Error('failed to send an email')
         }
