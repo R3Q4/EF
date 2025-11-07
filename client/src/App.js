@@ -21,6 +21,7 @@ import Redirect from './pages/auth/redirect'
 import Forget from './pages/auth/forgetpass'
 import Reset from './pages/auth/reset'
 import DeleteAccount from './pages/auth/deleteaccount'
+import Logout from './pages/auth/logout'
 
 function App() {
   return (
@@ -50,6 +51,9 @@ function App() {
         <Route path="/reset" element={<Reset />}/>
 
         <Route path="/deleteAccount" element={<DeleteAccount />} />
+
+
+        <Route path="/logout" element={<Logout />} />
 
 
 

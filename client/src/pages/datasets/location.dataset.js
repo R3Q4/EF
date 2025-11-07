@@ -3,11 +3,10 @@ import react from 'react'
 export default function Location({ donationPoints, openModal }) {
 
     const helperFilter = (description) => {
-        if (!description) return [];
+        if (!description) return []
 
-        let items = [];
+        let items = []
 
-        // Match "E-waste accepted: ..."
         const firstMatch = description.match(/E-waste accepted:\s*(.*)/i);
         if (firstMatch) {
             const ewasteItems = firstMatch[1]
@@ -28,10 +27,23 @@ export default function Location({ donationPoints, openModal }) {
                 .split(',')
                 .map(item => item.trim())
                 .filter(Boolean);
-            items = items.concat(egItems);
+            items = items.concat(egItems)
+        }
+        
+        const thirdMatch = description.match(/All regulated consumer products.*?,\s*(.*)/i);
+        if (thirdMatch) {
+            const regulatedItems = thirdMatch[1]
+            .replace(/https?:\/\/\S+/g, '') // remove URLs
+            .replace(/^and\s+/i, '')        // remove leading 'and '
+            .replace(/\.$/, '')             // remove trailing period
+            .trim()
+            .split(',')
+            .map(item => item.trim())
+            .filter(Boolean);
+            items = items.concat(regulatedItems);
         }
 
-        return items;
+        return items
     };
 
     return(

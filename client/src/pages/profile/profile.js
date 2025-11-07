@@ -134,7 +134,13 @@ const Profile = () =>{
 
                             {/*Header */}
                             <div className='text-center'>
-                                <p className='font-bold text-4xl mb-5'>User Information</p>
+
+                                <div className="text-center">
+                                <div className="inline-flex items-center space-x-4 px-2 py-2 rounded">
+                                    <i className="material-symbols-outlined text-teal-500 text-5xl">account_circle</i>
+                                    <p className="font-bold text-teal-500 text-4xl m-0">User Information</p>
+                                </div>
+                                </div>
                                 <p className='font-bold text-gray-500 mb-10'>Manage your account settings</p>
                                 {status &&
                                     <div className='bg-green-700 p-2 mb-5  text-white font-bold text-center'>{status}</div>

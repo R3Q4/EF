@@ -59,7 +59,7 @@ function Post({post, token}){
                             {post.img && (
                                 
                                     <img src={`http://localhost:5000/${p.img}`} alt={p.title} className="w-full h-auto rounded-md mb-4" />)} 
-                                    <Like postId={p.id} initiallyLiked = {false} />
+                                    <Like postId={p.id} />
                                     <Comments postId={p.id} token={token} />
                                     <DeleteButton postId={p.id} token={token} />
                                             

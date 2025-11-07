@@ -66,7 +66,7 @@ const Sidebar = () => {
                     </li>
 
                     <li >
-                        <Link to='/' className='flex items-center space-x-3 px-2 py-2 rounded hover:bg-gray-700 transition'>
+                        <Link to='/logout' className='flex items-center space-x-3 px-2 py-2 rounded hover:bg-gray-700 transition'>
                             <i className='material-symbols-outlined'>logout</i>
                             <span>Log Out</span>
                         </Link>

@@ -75,6 +75,29 @@ const FeedbackEnquiry = () =>{
         <div className='w-full h-full'>
             <p className='w-full bg-teal-500 text-gray-100 font-extrabold px-8 py-6 shadow-md text-[24px]'>Enquiry/Feedback</p>
             <div className ='mb-6 p-6'>
+
+            <p className="font-bold text-gray-600 mt-3 text-lg">
+            Need assistance? Choose an option below.
+            </p>
+
+            <div className="grid grid-cols-2 gap-6 mt-4">
+            <div
+                onClick={() => navigate('/faq')}
+                className="flex items-center justify-center space-x-4 bg-white border border-gray-200 rounded-2xl shadow hover:shadow-md transition cursor-pointer p-6">
+                <span className="material-symbols-outlined text-4xl text-teal-500">help</span>
+                <p className="font-bold text-gray-700 text-lg">FAQ</p>
+            </div>
+
+            <div
+                onClick={() => navigate('/chatbot')}
+                className="flex items-center justify-center space-x-4 bg-white border border-gray-200 rounded-2xl shadow hover:shadow-md transition cursor-pointer p-6">
+                <span className="material-symbols-outlined text-4xl text-indigo-500">smart_toy</span>
+                <p className="font-bold text-gray-700 text-lg">Chatbot</p>
+            </div>
+            </div>
+
+
+
                 {/* Navigate across pages */}
                 <div className = 'grid grid-cols-2 mt-3 gap-4'>
                     <button className='bg-teal-600 text-white px-4 py-2 rounded font-bold gap-4 '>Submit Enquiry/Feedback</button>
@@ -89,16 +112,15 @@ const FeedbackEnquiry = () =>{
                 <div className='bg-slate-200 mt-5 '>
 
                         <form onSubmit = {handleSubmit} className='p-10 bg-slate-200'>
-
                             <div className='mb-6'>
                                 <label className='block mb-1 text-left'><strong>Category</strong></label>
-                                <input name='category' type='text' value ={enquiry.category} onChange={handleChange} className='w-full p-2 border border-gray-400 bg-gray-100 rounded-xl px-4 focus:outline-none focus:ring-2 focus:ring-blue-500' placeholder='Enter your topic'></input>
+                                <input name='category' type='text' value ={enquiry.category} onChange={handleChange} className='w-full p-2 border border-gray-400 bg-gray-100 rounded-xl px-4 focus:outline-none focus:ring-2 focus:ring-blue-500' placeholder='Enter your category e.g. Feedback/Enquiry'></input>
                             </div>
 
 
                             <div className='mb-6'>
                                 <label className='block mb-1 text-left'><strong>Topic</strong></label>
-                                <input name='topic' type='text' value ={enquiry.topic} onChange={handleChange} className='w-full p-2 border border-gray-400 bg-gray-100 rounded-xl px-4 focus:outline-none focus:ring-2 focus:ring-blue-500' placeholder='Enter your topic'></input>
+                                <input name='topic' type='text' value ={enquiry.topic} onChange={handleChange} className='w-full p-2 border border-gray-400 bg-gray-100 rounded-xl px-4 focus:outline-none focus:ring-2 focus:ring-blue-500' placeholder='Enter your topic e.g. Account Management'></input>
                             </div>
                             
                             <div>

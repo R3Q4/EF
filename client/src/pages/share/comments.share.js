@@ -39,8 +39,8 @@ export default function CommentSection({ postId, userId, token }) {
         { post_id: postId, message: newMessage },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      setNewMessage('');
-      fetchComments(); // Refresh comment list
+      setNewMessage('')
+      fetchComments()
     } catch (err) {
       console.error(err);
       setError('Failed to add comment');

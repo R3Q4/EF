@@ -30,9 +30,9 @@ const formatData = (rawData) => {
       location: geometry?.coordinates
         ? [geometry.coordinates[1], geometry.coordinates[0]]
         : null
-    };
-  });
-};
+    }
+  })
+}
 const nearestFinderAlgo = (coord1, coord2) => {
   const toRad = x => (x * Math.PI) / 180;
   const [lat1, lon1] = coord1;
@@ -95,26 +95,26 @@ if (keyword) {
       throw new Error("Address not found");
     }
 
-    const latitude = parseFloat(data[0].lat);
-    const longitude = parseFloat(data[0].lon);
+    const latitude = parseFloat(data[0].lat)
+    const longitude = parseFloat(data[0].lon)
 
-    const points = await this.retrieve(datasetId, filters);
+    const points = await this.retrieve(datasetId, filters)
 
     if (!points.length) {
-      throw new Error("No locations found");
+      throw new Error("No locations found")
     }
 
     const results = points
       .filter((p) => p.location)
       .map((p) => {
-        const dist = nearestFinderAlgo([latitude, longitude], p.location);
-        return { ...p, distance_km: parseFloat(dist.toFixed(2)) };
+        const dist = nearestFinderAlgo([latitude, longitude], p.location)
+        return { ...p, distance_km: parseFloat(dist.toFixed(2)) }
       });
 
-    const sorted = results.sort((a, b) => a.distance_km - b.distance_km);
-    const limits = Math.max(1, parseInt(limit) || 3);
+    const sorted = results.sort((a, b) => a.distance_km - b.distance_km)
+    const limits = Math.max(1, parseInt(limit) || 3)
 
-    return sorted.slice(0, limits);
+    return sorted.slice(0, limits)
     }
 }
 export default new MapService()

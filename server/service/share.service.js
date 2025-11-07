@@ -28,7 +28,10 @@ class ShareService {
     }
     async likeCount(post_id){
         return await shareDAO.likeCount(post_id)
+    }
 
+    async isLiked(user_id, post_id) {
+        return await shareDAO.isLiked(user_id, post_id)
     }
 
     async addComment(user_id, post_id, message){

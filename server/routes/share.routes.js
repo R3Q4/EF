@@ -25,6 +25,7 @@ router.get("/retrieve", verifyToken, ShareController.retrieve)
 router.post("/like", verifyToken, ShareController.like)
 router.post("/unlike", verifyToken, ShareController.unlike)
 router.get("/likeCount", verifyToken, ShareController.likeCount)
+router.get("/isLiked", verifyToken, ShareController.isLiked)
 
 router.post("/addComment", verifyToken, ShareController.addComment)
 router.get("/retrieveComment", verifyToken, ShareController.retrieveComment)

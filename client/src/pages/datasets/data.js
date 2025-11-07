@@ -65,10 +65,8 @@ function Map(){
   }      
   //
 useEffect(() => {
-    fetchData('', selectedDataset);
-  }, [selectedDataset, category]);
-
-  const defaultPosition = [1.3521, 103.8198];
+    fetchData('', selectedDataset)
+  }, [selectedDataset, category])
 
   const openModal = (point) => {
     setSelectedPoint(point);

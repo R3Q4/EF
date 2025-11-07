@@ -40,7 +40,7 @@ function Retrieve({post, token}){
                             <p className='text-gray-600 mt-3'>{post.tag}</p>
                         </div>
                         
-                        <Like postId ={post.id} initiallyLinked = {false}/>
+                        <Like postId ={post.id}/>
                         <Comments key = {post.id} postId = {post.id} userId = {post.user_id}  token = {token}></Comments>
                     </div>)
                     )

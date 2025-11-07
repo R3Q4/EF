@@ -30,9 +30,13 @@ const FAQ = () =>{
         <Sidebar />
         <div className='w-full h-full'>
 
-
             <p className='w-full bg-teal-500 text-gray-100 font-extrabold px-8 py-6 shadow-md text-[24px]'>Frequently Asked Questions</p>
             <div className='m-10'>
+            <div className="flex items-center space-x-3 px-2 py-2 rounded mb-10">
+              <i className="material-symbols-outlined text-teal-500 text-5xl">help</i>
+              <p className="font-bold text-teal-600 text-3xl">FAQ</p>
+            </div>
+            
             <div className = 'grid grid-cols-2 gap-4'>
                 <button onClick ={() => navigate('/enquiry') } className='bg-teal-600 text-white px-4 py-2 rounded font-bold gap-4 '>Submit Enquiry/Feedback</button>
                 <button className='bg-teal-600 text-white px-4 py-2 rounded font-bold gap-4 '>View Past Records</button>

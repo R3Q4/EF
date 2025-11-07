@@ -1,58 +1,60 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-function Like({ postId, initiallyLiked = false }) {
-  const [liked, setLiked] = useState(initiallyLiked)
+function Like({ postId }) {
+  const [liked, setLiked] = useState(false)
   const [loading, setLoading] = useState(false)
   const [count, setCount] = useState(0)
+  const token = localStorage.getItem('token')
 
-  const token = localStorage.getItem('token') // get token once
-
-  // Fetch like count on mount
   useEffect(() => {
-    const fetchLikeCount = async () => {
-      if (!token) return // user not logged in, skip
+    const fetchData = async () => {
+      if (!token) return
       try {
-        const response = await axios.get(
-          `http://localhost:5000/share/likeCount?post_id=${postId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`, // include token
-            },
-          }
-        )
-        setCount(Number(response.data.count) || 0) // ensure it's a number
+        const [countRes, likedRes] = await Promise.all([
+          axios.get(`http://localhost:5000/share/likeCount?post_id=${postId}`, {
+            headers: { Authorization: `Bearer ${token}` }
+          }),
+          axios.get(`http://localhost:5000/share/isLiked?post_id=${postId}`, {
+            headers: { Authorization: `Bearer ${token}` }
+          })
+        ])
+        setCount(Number(countRes.data.count) || 0)
+        setLiked(Boolean(likedRes.data.liked))
       } catch (err) {
-        console.error('Error fetching like count:', err)
+        console.error('Error fetching like data:', err)
       }
     }
-    fetchLikeCount()
+    fetchData()
   }, [postId, token])
 
   const handleToggle = async () => {
     if (!token || loading) return
-
-    const wasLiked = liked
-    setLiked(!liked)
-    setCount(prev => prev + (wasLiked ? -1 : 1))
     setLoading(true)
+    const wasLiked = liked
 
     try {
+      setLiked(!wasLiked)
+      setCount(prev => prev + (wasLiked ? -1 : 1))
+
       const url = wasLiked
-        ? `http://localhost:5000/share/unlike?post_id=${postId}`
-        : `http://localhost:5000/share/like?post_id=${postId}`
+        ? 'http://localhost:5000/share/unlike'
+        : 'http://localhost:5000/share/like'
 
       await axios.post(
         url,
-        { post_id: postId },
-        {
-          headers: { Authorization: `Bearer ${token}` }, // include token
-        }
+        { post_id: postId }, 
+        { headers: { Authorization: `Bearer ${token}` } }
       )
+
+      const response = await axios.get(
+        `http://localhost:5000/share/likeCount?post_id=${postId}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      setCount(Number(response.data.count) || 0)
     } catch (err) {
       console.error('Error toggling like:', err)
       setLiked(wasLiked)
-      setCount(prev => prev + (wasLiked ? 1 : -1))
     } finally {
       setLoading(false)
     }
@@ -62,14 +64,11 @@ function Like({ postId, initiallyLiked = false }) {
     <button
       onClick={handleToggle}
       disabled={loading}
-      className={`
-        mt-4 flex items-center justify-center gap-2 
-        w-12 h-12 rounded-full  
+      className={`mt-4 flex items-center justify-center gap-2 w-12 h-12 rounded-full  
         transition-transform duration-200
         ${liked ? 'bg-red-400 text-white scale-110' : 'bg-gray-200 text-gray-700 scale-100'}
         ${loading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:scale-110'}
-        p-3  /* extra padding inside the circle */
-      `}
+        p-3`}
     >
       <span className="material-symbols-outlined text-2xl">
         favorite

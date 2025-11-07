@@ -2,16 +2,15 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Sidebar from '../../components/Sidebar'
 
- import AllLocations from './location.dataset.js'
- import Search from './search.dataset.js'
- import AMap from './map.dataset.js'
- import Choose from './choose.dataset.js'
- import APopup from './popup.dataset.js'
+import AllLocations from './location.dataset.js'
+import Search from './search.dataset.js'
+import AMap from './map.dataset.js'
+import Choose from './choose.dataset.js'
+import APopup from './popup.dataset.js'
+import Category from './userFilter.dataset'
 
-  import Category from './userFilter.dataset'
 
-
-function Map(){
+function Nearest(){
   const [donationPoints,setDonationPoints] = useState([])
 
   const [loading, setLoading] = useState(false)
@@ -62,9 +61,8 @@ function Map(){
           : category
       }
 
-
+      if (combinedFilters) params.append('filters', combinedFilters)
       if (datasetId) params.append('datasetId', datasetId)
-      if (filters) params.append('filters', combinedFilters)
       if (limit) params.append('limit', limit)
       if (address) params.append('address', address)
 
@@ -76,7 +74,10 @@ function Map(){
         setLoading(false)
     }
   }
-  useEffect (() => {fetchData()}, [datasetId])      
+
+  useEffect(() => {
+      fetchData('', datasetId)
+    }, [datasetId, category])
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -102,12 +103,27 @@ function Map(){
             <p className='w-full bg-teal-500 text-gray-100 font-extrabold px-8 py-6 shadow-md text-[24px]'>Determine Your Nearest Recycling Point</p>            
 
             <div className = 'p-4'>
+            <div className="group cursor-pointer inline-block w-full">
+              <div className="flex items-center space-x-3 mt-6">
+                <i className="material-symbols-outlined text-teal-500 text-5xl">search</i>
+                <p className="font-bold text-teal-600 text-3xl m-0">Find Location</p>
+              </div>
+
+              <p className="font-bold text-gray-500 max-h-0 overflow-hidden transition-all duration-300 mt-2 group-hover:max-h-40">
+                Find locations where you can donate, repair, resell, recycle! Toggle between recycling points and donation locations. Filter based on your preference.
+              </p>
+            </div>
 
                 <Choose selectedDataset = { datasetId } setSelectedDataset = { setDatasetId } datasetOptions = {datasetOptions}/>
                 <Category currentCategories = {currentCategories} category = {category} setCategory = {setCategory}/>
                 
                 <Search inputValue = {filters} setInputValue={setFilters} onSearch ={(keyword) => fetchData(keyword, datasetId)}/>
-                  
+                
+              <div className="group cursor-pointer w-full mb-6">
+                {/* Form header */}
+                <p className="font-bold text-gray-500 max-h-0 overflow-hidden transition-all duration-300 group-hover:max-h-40 mb-2">
+                  Find the nearest recycling location around you by keying in your current location
+                </p>
                 <form className='mb-4 flex flex-col justify-center text-center align-center gap-3 bg-teal-100 p-4 rounded-2xl' onSubmit ={handleSearch}>
                     <div className='flex gap-3 w-full '>
                         <p className='font-bold'> Current Location</p><input type='text' className='w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400' value = {address} placeholder = "Enter your address" onChange = {(e) => setAddress(e.target.value)}></input>
@@ -115,6 +131,7 @@ function Map(){
                     </div>
                     <button type= 'submit' className='w-full w-auto px-6 py-2 bg-teal-500 text-white font-bold rounded-lg hover:bg-teal-600'>Find</button>
                 </form>
+              </div>
 
                 <div>
                     <AMap donationPoints = { donationPoints } openModal = { openModal }/>
@@ -138,4 +155,4 @@ function Map(){
   )
 
 }
-export default Map
+export default Nearest

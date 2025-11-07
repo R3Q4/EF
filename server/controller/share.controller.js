@@ -30,7 +30,7 @@ class ShareController {
     async like(req, res, next) {
         try {
             const user_id = req.user.id
-            const { post_id } = req.query   
+            const { post_id } = req.body   
             await ShareService.like(user_id, post_id)
             res.status(200).json({message: "Post liked successfully"})
         } catch (err) {
@@ -41,7 +41,7 @@ class ShareController {
     async unlike(req, res, next) {  
         try {
             const user_id = req.user.id
-            const { post_id } = req.query   
+            const { post_id } = req.body   
             await ShareService.unlike(user_id, post_id)
             res.status(200).json({message: "Post unliked successfully"})
         } catch (err) {
@@ -54,6 +54,17 @@ class ShareController {
             const { post_id } = req.query   
             const count = await ShareService.likeCount(post_id)
             res.status(200).json({count})
+        } catch (err) {
+            next(err)
+        }
+    }
+
+    async isLiked(req, res, next){
+        try {
+            const user_id = req.user.id
+            const { post_id } = req.query
+            const liked = await ShareService.isLiked(user_id, post_id)
+            res.status(200).json({ liked })
         } catch (err) {
             next(err)
         }

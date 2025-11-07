@@ -52,10 +52,22 @@ const Chatbot = () => {
         <div className='w-full flex flex-col'>
           <p className='w-full bg-teal-500 text-gray-100 font-extrabold px-8 py-6 shadow-md text-[24px]'>Chatbot</p>
 
+
           {/* Chatbot contents */}
           <div className='bg-slate-200 p-4 flex flex-col flex-grow ml-10 m-10'>
-            <p className='text-3xl font-bold mb-6 text-center text-teal-600 mt-3'>Mr Eco</p>
+            
+          <div className="group w-full">
+              <p className='text-3xl font-bold mb-6 text-center text-teal-600 mt-3'>Mr Eco</p>
 
+
+            <div className="overflow-hidden max-h-0 transition-all duration-300 group-hover:max-h-40">
+              <div className="px-8 py-2">
+                <p className="font-bold text-slate-500 text-xl">
+                  Ask me any environment related question e.g. How can I start recycling
+                </p>
+              </div>
+            </div>
+          </div>
             <div className='flex-grow bg-white p-4 rounded-lg shadow space-y-4 mb-4'>
             {chatHistory.map((response,i) =>{
                 const isBot = response.role ==='model'
